@@ -36,7 +36,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-OUR_APPS = ["src.apps.users"]
+OUR_APPS = ["src.apps.users", "src.apps.menu"]
 
 THIRD_PACKAGE_APPS = []
 
