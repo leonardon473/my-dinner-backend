@@ -27,7 +27,7 @@ APPEND_SLASH = False
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,6 +35,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+OUR_APPS = ["src.apps.users"]
+
+THIRD_PACKAGE_APPS = []
+
+INSTALLED_APPS = DJANGO_APPS + OUR_APPS + THIRD_PACKAGE_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
