@@ -38,7 +38,7 @@ DJANGO_APPS = [
 
 OUR_APPS = ["src.apps.menu", "src.apps.orders", "src.apps.users"]
 
-THIRD_PACKAGE_APPS = []
+THIRD_PACKAGE_APPS = ["rest_framework"]
 
 INSTALLED_APPS = DJANGO_APPS + OUR_APPS + THIRD_PACKAGE_APPS
 
