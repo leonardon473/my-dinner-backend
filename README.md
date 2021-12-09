@@ -2,7 +2,7 @@
 
 This project is based on [The Simplest Docker + Django Example](https://github.com/cyface/simplest-docker-django-example)
 
-### Commands
+## Commands
 
 Build the Dockerfile into a runnable image:
 - `docker build`
@@ -16,7 +16,7 @@ Use Docker Compose to do the same thing:
 - Ctrl-C to stop
 
 
-### About building local environment with Linux systems
+## About building local environment with Linux systems
 
 If you bring up the local environment in a linux system, maybe you can get some problems about users permissions when working with Docker.
 So we give you a little procedure to avoid problems with users permissions structure in Linux.:
@@ -59,3 +59,38 @@ Edit `Dockerfile` and replace 1000 by your user id.
 make rebuild
 make up
 ```
+
+## How the project works?
+
+### DB diagram
+
+![DB diagram](assets/db_diagram.png)
+
+### Architecture
+
+![Architecture diagram](assets/architecture_diagram.png)
+
+#### Services:
+
+Services interacts with models and
+handles business logic for the domain.
+It depends on Models if it has to
+communicate with a datastore and
+Integrations if it has to talk to another
+domain.
+
+#### Models:
+
+Models stores the representation of
+data in a datastore. It depends on a
+datastore being present.
+
+#### Views:
+
+Originally, Views publishes the service functionality
+for other domains to consume. It
+depends on Services so it can publish
+functionality. But in this case for speed development
+Views depends Models. I suggest to use Models directly
+for CRUD operations and Services for advance operations.
+Nora admin, user interface and the rest api are located here.
