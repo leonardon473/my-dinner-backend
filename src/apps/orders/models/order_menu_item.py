@@ -38,5 +38,5 @@ class OrderMenuItem(models.Model):
         verbose_name = "Order menu item"
         verbose_name_plural = "Order menu items"
 
-    def __str__(self):
-        return self.name
+    def __str__(self) -> str:
+        return self.order_item_id
