@@ -38,6 +38,7 @@ class ValidateOrderService:
     def validate(self):
         self.validate_min_order_menu_items()
         self.validate_client_address_is_owner_by_client()
+        self.validate_products_are_available()
         if self.do_validate_time:
             self.validate_time()
 
@@ -47,10 +48,7 @@ class ValidateOrderService:
         """
         if len(self.order_dict["order_menu_items"]) < 2:
             raise ValueError(
-                {
-                    "order_menu_items": "La orden debe contener al menos 2 "
-                    "elementos del menu"
-                }
+                {"order_menu_items": "The order must contain al least two menu items."}
             )
 
     def validate_client_address_is_owner_by_client(self) -> None:
@@ -61,6 +59,16 @@ class ValidateOrderService:
             raise ValueError(
                 {"client_address": "Client address is not owned by the client"}
             )
+
+    def validate_products_are_available(self):
+        for i in self.order_dict["order_menu_items"]:
+            if not i["menu_item"].is_available:
+                raise ValueError(
+                    {
+                        "order_menu_items": "Some menu item %s is not available"
+                        % i["menu_item"].menu_item_id
+                    }
+                )
 
     def validate_time(self) -> None:
         if now().time() < time(16, 0) or now().time() > time(21, 0):
