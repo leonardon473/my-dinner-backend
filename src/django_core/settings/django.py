@@ -36,7 +36,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-OUR_APPS = ["src.apps.menu", "src.apps.orders", "src.apps.users"]
+OUR_APPS = ["apps.menu", "apps.orders", "apps.users"]
 
 THIRD_PACKAGE_APPS = ["rest_framework"]
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "src.django_core.urls"
+ROOT_URLCONF = "django_core.urls"
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "src.django_core.wsgi.application"
+WSGI_APPLICATION = "django_core.wsgi.application"
 
 
 # Database

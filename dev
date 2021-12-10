@@ -30,7 +30,7 @@ shift || _usage
 
 case ${arg} in
 up|run|server|runserver)
-  python manage.py runserver 0.0.0.0:8000
+  python src/manage.py runserver 0.0.0.0:8000
 ;;
 test)
   pytest "$@" --flake8 --isort --black --junitxml=/dev/shm/test-results/pytest.xml
@@ -56,13 +56,13 @@ pipi)
   fi
 ;;
 migrate)
-  python manage.py migrate "$@"
+  python src/manage.py migrate "$@"
 ;;
 makemigrations|makemigration|makemig)
-  python manage.py makemigrations "$@"
+  python src/manage.py makemigrations "$@"
 ;;
 sqlmig|sqlmigrate|sqlmigration)
-  python manage.py sqlmigrate "$@"
+  python src/manage.py sqlmigrate "$@"
 ;;
 *)
   _usage

@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING
 from rest_framework.generics import ListCreateAPIView
 
 # Project libs
-from src.apps.users.models import Client
-from src.apps.users.serializers.client import CreateUserSerializer
+from apps.users.models import Client
+from apps.users.serializers.client import CreateUserSerializer
 
 # If type checking, __all__
 if TYPE_CHECKING:

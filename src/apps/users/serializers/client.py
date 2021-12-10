@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 from rest_framework import serializers
 
 # Project libs
-from src.apps.users.models import Client
+from apps.users.models import Client
 
 # If type checking, __all__
 if TYPE_CHECKING:
