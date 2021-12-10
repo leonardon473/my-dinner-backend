@@ -33,7 +33,7 @@ up|run|server|runserver)
   python src/manage.py runserver 0.0.0.0:8000
 ;;
 test)
-  pytest "$@"
+  PYTHONPATH=src pytest "$@"
 ;;
 migrate)
   python src/manage.py migrate "$@"
