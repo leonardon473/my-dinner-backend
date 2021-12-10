@@ -12,7 +12,7 @@ from apps.orders.models import Order, OrderMenuItem
 
 # If type checking, __all__
 if TYPE_CHECKING:
-    from typing import Any, Dict
+    from typing import Any, Dict, List
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -51,6 +51,18 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             "order_menu_items",
         ]
         model = Order
+
+    def validate_order_menu_items(
+        self, value: "List[Dict[str, Any]]"
+    ) -> "List[Dict[str, Any]]":
+        """
+        Check that at least two items are ordered.
+        """
+        if len(value) < 2:
+            raise serializers.ValidationError(
+                "La orden debe contener al menos 2 elementos del menu"
+            )
+        return value
 
     def validate(self, attrs: "Dict[str, Any]") -> "Dict[str, Any]":
         """
