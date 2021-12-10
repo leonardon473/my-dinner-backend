@@ -94,3 +94,7 @@ functionality. But in this case for speed development
 Views depends Models. I suggest to use Models directly
 for CRUD operations and Services for advance operations.
 Nora admin, user interface and the rest api are located here.
+
+# Improvements
+
+- Use authentication to list users addresses.
