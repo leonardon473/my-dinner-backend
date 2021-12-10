@@ -38,7 +38,10 @@ DJANGO_APPS = [
 
 OUR_APPS = ["apps.menu", "apps.orders", "apps.users"]
 
-THIRD_PACKAGE_APPS = ["rest_framework"]
+THIRD_PACKAGE_APPS = [
+    "django_extensions",
+    "rest_framework",
+]
 
 INSTALLED_APPS = DJANGO_APPS + OUR_APPS + THIRD_PACKAGE_APPS
 
