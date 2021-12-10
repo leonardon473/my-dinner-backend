@@ -96,6 +96,17 @@ Views depends Models. I suggest to use Models directly
 for CRUD operations and Services for advance operations.
 Nora admin, user interface and the rest api are located here.
 
+Architecture based on [Django domains](https://phalt.github.io/django-api-domains/).
+Some concept names has been changed.
+
+### Video docs
+
+- [Parte 1](https://www.loom.com/share/4ad90f551c454e719551bd2758a1c3e7)
+- [Parte 2](https://www.loom.com/share/b48cd3cce47a487da70cb525769249e2)
+- [Parte 3](https://www.loom.com/share/1dd0074b4d454279905e87676c159d21)
+- [Parte 4](https://www.loom.com/share/b7c7fa13f915419e87053547baf50d91)
+- [Parte 5](https://www.loom.com/share/a02579c92ad349979146d3e95da2aab1)
+
 ## Improvements
 
 - Use authentication to list users addresses.
@@ -106,3 +117,8 @@ Nora admin, user interface and the rest api are located here.
 
 - The requirement "Puede contener al menos 2 platillos" was considered as
   "Debe contener al menos 2 platillos".
+
+## Bibliography
+
+- [Managing Complexity with Architecture Patterns in Python](https://klaviyo.tech/managing-complexity-with-architecture-patterns-in-python-626b895710ca)
+- [Django domains](https://phalt.github.io/django-api-domains/)
