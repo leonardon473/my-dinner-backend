@@ -5,9 +5,10 @@
 from typing import TYPE_CHECKING
 
 # Third party libs
+from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.schemas.openapi import AutoSchema
 from rest_framework.views import APIView
 
 # Project libs
@@ -43,7 +44,35 @@ def parse_date_query_param(date_string: str, query_param_name: str) -> "Optional
 # -----------------------------------------------------------------------------
 
 
+class CustomSchema(AutoSchema):
+    def get_operation(self, path, method):
+        operation = super().get_operation(path, method)
+        operation["parameters"] += [
+            {
+                "name": "from_date",
+                "required": True,
+                "in": "query",
+                "description": "Date to start to show results.",
+                "schema": {
+                    "type": "date",
+                },
+            },
+            {
+                "name": "to_date",
+                "required": True,
+                "in": "query",
+                "description": "Date until results will be shown.",
+                "schema": {
+                    "type": "date",
+                },
+            },
+        ]
+        return operation
+
+
 class MenuItemsSalesByTypeOfCuisineView(APIView):
+    schema = CustomSchema()
+
     def get(self, request: "Request", *args: "Any", **kwargs: "Any"):
         from_date = parse_date_query_param(
             request.query_params.get("from_date"),
