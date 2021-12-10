@@ -28,7 +28,11 @@ if TYPE_CHECKING:
 
 class OrderMenuItem(models.Model):
     order_item_id = models.AutoField(primary_key=True)
-    order = models.ForeignKey("orders.Order", on_delete=models.PROTECT)
+    order = models.ForeignKey(
+        "orders.Order",
+        on_delete=models.PROTECT,
+        related_name="order_menu_items",
+    )
     menu_item = models.ForeignKey("menu.MenuItem", on_delete=models.PROTECT)
     quantity = models.IntegerField()
     unit_price = models.DecimalField(max_digits=7, decimal_places=2)

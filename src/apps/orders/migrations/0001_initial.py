@@ -9,38 +9,62 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('menu', '0001_initial'),
-        ('users', '0001_initial'),
+        ("menu", "0001_initial"),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('order_id', models.AutoField(primary_key=True, serialize=False)),
-                ('total_amount', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('client', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='users.client')),
-                ('client_address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.clientaddress')),
+                ("order_id", models.AutoField(primary_key=True, serialize=False)),
+                ("total_amount", models.DecimalField(decimal_places=2, max_digits=7)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                (
+                    "client",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="users.client"
+                    ),
+                ),
+                (
+                    "client_address",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="users.clientaddress",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Order',
-                'verbose_name_plural': 'Orders',
+                "verbose_name": "Order",
+                "verbose_name_plural": "Orders",
             },
         ),
         migrations.CreateModel(
-            name='OrderMenuItem',
+            name="OrderMenuItem",
             fields=[
-                ('order_item_id', models.AutoField(primary_key=True, serialize=False)),
-                ('quantity', models.IntegerField()),
-                ('unit_price', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('subtotal', models.DecimalField(decimal_places=2, max_digits=7)),
-                ('menu_item', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='menu.menuitem')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='orders.order')),
+                ("order_item_id", models.AutoField(primary_key=True, serialize=False)),
+                ("quantity", models.IntegerField()),
+                ("unit_price", models.DecimalField(decimal_places=2, max_digits=7)),
+                ("subtotal", models.DecimalField(decimal_places=2, max_digits=7)),
+                (
+                    "menu_item",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="menu.menuitem",
+                    ),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="orders.order",
+                        related_name="order_menu_items",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Order menu item',
-                'verbose_name_plural': 'Order menu items',
+                "verbose_name": "Order menu item",
+                "verbose_name_plural": "Order menu items",
             },
         ),
     ]
