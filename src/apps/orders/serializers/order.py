@@ -9,7 +9,7 @@ from rest_framework import serializers
 
 # Project libs
 from apps.orders.models import Order, OrderMenuItem
-from apps.orders.services.create_order import ValidateOrderService
+from apps.orders.services.order import ValidateOrderService
 
 # If type checking, __all__
 if TYPE_CHECKING:

@@ -12,7 +12,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 # Project libs
 from apps.orders.models import Order
 from apps.orders.serializers.order import OrderCreateSerializer, OrderRetrieveSerializer
-from apps.orders.services.create_order import CreateOrderService
+from apps.orders.services.order import CreateOrderService
 
 # If type checking, __all__
 if TYPE_CHECKING:
