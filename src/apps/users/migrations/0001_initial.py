@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 ),
                 ("street", models.CharField(max_length=50)),
                 ("num_ext", models.CharField(max_length=50)),
-                ("num_int", models.CharField(max_length=50)),
+                ("num_int", models.CharField(blank=True, max_length=50)),
                 ("neighborhood", models.CharField(max_length=50)),
                 ("zip_code", models.CharField(max_length=5)),
                 (
