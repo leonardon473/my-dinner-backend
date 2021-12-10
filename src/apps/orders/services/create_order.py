@@ -2,12 +2,14 @@
 # Libraries
 # -----------------------------------------------------------------------------
 # Core libs
+from datetime import time
 from typing import TYPE_CHECKING
 
 # Third party libs
 
 # Project libs
 from apps.orders.models import Order, OrderMenuItem
+from apps.utils.time import now
 
 # If type checking, __all__
 if TYPE_CHECKING:
@@ -24,6 +26,45 @@ if TYPE_CHECKING:
 # -----------------------------------------------------------------------------
 # Classes
 # -----------------------------------------------------------------------------
+
+
+class ValidateOrderService:
+    def __init__(self, order_dict: "Dict[str, Any]", do_validate_time: bool = True):
+        self.order_dict = order_dict
+        self.do_validate_time = do_validate_time
+
+    def validate(self):
+        self.validate_min_order_menu_items()
+        self.validate_client_address_is_owner_by_client()
+        if self.do_validate_time:
+            self.validate_time()
+
+    def validate_min_order_menu_items(self) -> None:
+        """
+        Check that at least two items are ordered.
+        """
+        if len(self.order_dict["order_menu_items"]) < 2:
+            raise ValueError(
+                {
+                    "order_menu_items": "La orden debe contener al menos 2 "
+                    "elementos del menu"
+                }
+            )
+
+    def validate_client_address_is_owner_by_client(self) -> None:
+        """
+        Check that the client address is owned by the client.
+        """
+        if self.order_dict["client_address"].client != self.order_dict["client"]:
+            raise ValueError(
+                {"client_address": "Client address is not owned by the client"}
+            )
+
+    def validate_time(self) -> None:
+        if now().time() < time(16, 0) or now().time() > time(21, 0):
+            raise ValueError(
+                "Invalid schedule, the working time is from 16:00 to 21:00."
+            )
 
 
 class CreateOrderService:

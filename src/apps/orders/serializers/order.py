@@ -9,10 +9,11 @@ from rest_framework import serializers
 
 # Project libs
 from apps.orders.models import Order, OrderMenuItem
+from apps.orders.services.create_order import ValidateOrderService
 
 # If type checking, __all__
 if TYPE_CHECKING:
-    from typing import Any, Dict, List
+    from typing import Any, Dict
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -52,26 +53,16 @@ class OrderCreateSerializer(serializers.ModelSerializer):
         ]
         model = Order
 
-    def validate_order_menu_items(
-        self, value: "List[Dict[str, Any]]"
-    ) -> "List[Dict[str, Any]]":
-        """
-        Check that at least two items are ordered.
-        """
-        if len(value) < 2:
-            raise serializers.ValidationError(
-                "La orden debe contener al menos 2 elementos del menu"
-            )
-        return value
-
     def validate(self, attrs: "Dict[str, Any]") -> "Dict[str, Any]":
         """
-        Check that the client address is owned by the client.
+        Use a service to validate the incoming data.
         """
-        if attrs["client_address"].client != attrs["client"]:
-            raise serializers.ValidationError(
-                {"client_address": "Client address is not owned by the client"}
-            )
+        service = ValidateOrderService(attrs)
+        try:
+            service.validate()
+        except ValueError as exc:
+            raise serializers.ValidationError(exc.args[0])
+
         return attrs
 
 
