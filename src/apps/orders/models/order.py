@@ -35,6 +35,8 @@ class Order(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+    objects: "models.Manager[Order]"
+
     class Meta:
         verbose_name = "Order"
         verbose_name_plural = "Orders"
