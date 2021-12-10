@@ -5,11 +5,11 @@
 from typing import TYPE_CHECKING
 
 # Third party libs
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView
 
 # Project libs
 from apps.users.models import Client
-from apps.users.serializers.client import CreateUserSerializer
+from apps.users.serializers.client import CreateUserSerializer, RetrieveUserSerializer
 
 # If type checking, __all__
 if TYPE_CHECKING:
@@ -28,6 +28,11 @@ if TYPE_CHECKING:
 # -----------------------------------------------------------------------------
 
 
-class CreateListUserView(ListCreateAPIView):
+class CreateListUserView(CreateAPIView):
     queryset = Client.objects.all()
     serializer_class = CreateUserSerializer
+
+
+class UserRetrieveUpdateView(RetrieveUpdateAPIView):
+    queryset = Client.objects.all()
+    serializer_class = RetrieveUserSerializer
