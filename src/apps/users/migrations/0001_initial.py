@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ("neighborhood", models.CharField(max_length=50)),
                 ("zip_code", models.CharField(max_length=5)),
                 (
-                    "client_id",
+                    "client",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE, to="users.client"
                     ),

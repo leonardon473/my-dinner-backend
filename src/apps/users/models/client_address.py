@@ -28,7 +28,7 @@ if TYPE_CHECKING:
 
 class ClientAddress(models.Model):
     client_address_id = models.AutoField(primary_key=True)
-    client_id = models.ForeignKey("users.Client", on_delete=models.CASCADE)
+    client = models.ForeignKey("users.Client", on_delete=models.CASCADE)
     street = models.CharField(max_length=50)
     num_ext = models.CharField(max_length=50)
     num_int = models.CharField(max_length=50)
