@@ -5,6 +5,7 @@
 from typing import TYPE_CHECKING
 
 # Third party libs
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 
 # Project libs
@@ -26,9 +27,9 @@ if TYPE_CHECKING:
 # -----------------------------------------------------------------------------
 
 
-class Client(models.Model):
+class Client(AbstractBaseUser, models.Model):
     client_id = models.AutoField(primary_key=True)
-    email = models.CharField(max_length=120)
+    email = models.CharField(max_length=120, unique=True)
     full_name = models.CharField(max_length=120)
     mobile_number = models.CharField(max_length=20)
 
