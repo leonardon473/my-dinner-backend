@@ -83,7 +83,7 @@ class OrderMenuItemRetrieveSerializer(serializers.ModelSerializer):
 
 
 class OrderRetrieveSerializer(serializers.ModelSerializer):
-    order_menu_items = OrderMenuItemCreateSerializer(many=True)
+    order_menu_items = OrderMenuItemRetrieveSerializer(many=True)
 
     class Meta:
         fields = [
