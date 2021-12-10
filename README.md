@@ -4,16 +4,17 @@ This project is based on [The Simplest Docker + Django Example](https://github.c
 
 ## Commands
 
-Build the Dockerfile into a runnable image:
-- `docker build`
+### Run the project:
+- `make up` This will be build, run the docker container and open a bash from the
+  container.
 
-Run the image you just built, exposing port 8000 and setting the `MAGIC_MESSAGE` environment variable:
-- `docker run -p 8000:8000 -e MAGIC_MESSAGE="Docker command line" docker-simple`
-- Ctrl-C to stop
+  Ctrl-D to stop
 
-Use Docker Compose to do the same thing:
-- `docker-compose up`
-- Ctrl-C to stop
+- `./dev up` One time you are in the container this command will run the django project.
+
+  Ctrl-C to stop
+
+- `./dev test` Run all the project tests.
 
 
 ## About building local environment with Linux systems
