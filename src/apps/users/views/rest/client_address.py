@@ -5,7 +5,7 @@
 from typing import TYPE_CHECKING
 
 # Third party libs
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
 # Project libs
 from apps.users.models import ClientAddress
@@ -31,7 +31,7 @@ if TYPE_CHECKING:
 # -----------------------------------------------------------------------------
 
 
-class ClientAddressCreateListView(CreateAPIView):
+class ClientAddressCreateListView(ListCreateAPIView):
     queryset = ClientAddress.objects.all()
     serializer_class = ClientAddressCreateSerializer
 
