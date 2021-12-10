@@ -2,10 +2,12 @@
 # Libraries
 # -----------------------------------------------------------------------------
 # Core libs
-from datetime import time
+from datetime import date, time
 from typing import TYPE_CHECKING
 
 # Third party libs
+import psycopg2
+from django.db import connection as conn
 
 # Project libs
 from apps.orders.models import Order, OrderMenuItem
@@ -13,7 +15,7 @@ from apps.utils.time import now
 
 # If type checking, __all__
 if TYPE_CHECKING:
-    from typing import Any, Dict
+    from typing import Any, Dict, List
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -111,3 +113,32 @@ class CreateOrderService:
             "unit_price": omi_dict["menu_item"].price,
             "subtotal": subtotal,
         }
+
+
+def get_menu_items_sales_by_type_of_cuisine(
+    from_date: date, to_date: date
+) -> "List[Dict[str, Any]]":
+    sql = """
+    SELECT
+    c.name,
+    count(*) as number_of_sales,
+    sum(omi.subtotal) sales_amount
+    FROM "menu_typeofcuisine" c
+    INNER JOIN "menu_menuitem" mi on mi.type_of_cuisine_id = c.type_of_cuisine_id
+    INNER JOIN "orders_ordermenuitem" omi on omi.menu_item_id = mi.menu_item_id
+    INNER JOIN "orders_order" o on o.order_id = omi.order_id
+    WHERE o.created::date BETWEEN %s and %s
+    GROUP BY c.type_of_cuisine_id
+    """
+    params = (from_date, to_date)
+
+    conn.ensure_connection()
+    with conn.connection.cursor(
+        cursor_factory=psycopg2.extras.RealDictCursor
+    ) as cursor:
+        cursor = conn._prepare_cursor(cursor)
+        cursor.execute(sql, params)
+        type_of_cuisines = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return type_of_cuisines

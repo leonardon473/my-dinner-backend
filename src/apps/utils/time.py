@@ -12,7 +12,7 @@ from django.utils import timezone
 
 # If type checking, __all__
 if TYPE_CHECKING:
-    pass
+    from datetime import date
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -37,3 +37,7 @@ def localize(dt: datetime) -> datetime:
     """
     tz = timezone.get_default_timezone()
     return tz.localize(dt)
+
+
+def parse_date(date_string: str) -> "date":
+    return datetime.strptime(date_string, "%Y-%m-%d")
