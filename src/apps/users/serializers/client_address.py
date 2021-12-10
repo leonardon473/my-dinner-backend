@@ -43,6 +43,7 @@ class ClientAddressCreateSerializer(serializers.ModelSerializer):
 class ClientAddressRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         fields = [
+            "client_address_id",
             "street",
             "num_ext",
             "num_int",

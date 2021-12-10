@@ -30,6 +30,7 @@ if TYPE_CHECKING:
 class TypeOfCuisineSerializer(serializers.ModelSerializer):
     class Meta:
         fields = [
+            "type_of_cuisine_id",
             "name",
         ]
         model = TypeOfCuisine

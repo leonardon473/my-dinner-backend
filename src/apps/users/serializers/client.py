@@ -44,6 +44,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class RetrieveUserSerializer(serializers.ModelSerializer):
     class Meta:
         fields = [
+            "client_id",
             "email",
             "full_name",
             "mobile_number",
