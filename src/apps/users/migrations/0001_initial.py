@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("client_id", models.AutoField(primary_key=True, serialize=False)),
-                ("email", models.CharField(max_length=120, unique=True)),
+                ("email", models.EmailField(max_length=120, unique=True)),
                 ("full_name", models.CharField(max_length=120)),
                 ("mobile_number", models.CharField(max_length=20)),
             ],
