@@ -98,6 +98,7 @@ Nora admin, user interface and the rest api are located here.
 ## Improvements
 
 - Use authentication to list users addresses.
+- The column client_id in Order table can be removed due to normalization.
 
 
 ## Considerations
