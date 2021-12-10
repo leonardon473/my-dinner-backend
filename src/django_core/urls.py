@@ -1,7 +1,6 @@
-# Django URLs
+from django.urls import include, path
 
-from django.urls import path
 
-from django.conf import settings
-
-urlpatterns = []
+urlpatterns = [
+    path("users/", include("src.apps.users.urls")),
+]
