@@ -95,6 +95,12 @@ Views depends Models. I suggest to use Models directly
 for CRUD operations and Services for advance operations.
 Nora admin, user interface and the rest api are located here.
 
-# Improvements
+## Improvements
 
 - Use authentication to list users addresses.
+
+
+## Considerations
+
+- The requirement "Puede contener al menos 2 platillos" was considered as
+  "Debe contener al menos 2 platillos".
