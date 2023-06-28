@@ -1,6 +1,22 @@
-# My Dinner Backend
+# My Dinner Code Challenge
 
 This project is based on [The Simplest Docker + Django Example](https://github.com/cyface/simplest-docker-django-example)
+
+## Requiriments
+
+My Dinner is a famous restaurant to go to dinner and due to the high demand they have had, they decided to offer some of their dishes at home through an app. For now they will only offer their most requested dishes from 3 types of cuisine: Mexican, Italian and Japanese. After analyzing some of the existing apps on the market, they came to the conclusion of developing their own app since the existing proposals are left with a very high percentage of commission and it did not suit them. To develop the My Dinner app, it hired the company My Soft. For this project My Soft made two teams of developers, a front end team dedicated to developing the mobile app and another backend team in charge of developing the Rest API that will consume the app.
+Suppose you are part of the backend team and as part of your first tasks you were assigned the following:
+
+1. Model and build the first version of the Database to store for now the customer catalog, the catalog of dishes and the orders made by customers. As part of the task you will have to choose the type of DB that best suits you, which can be SQL or NoSQL or a combination of both.
+    1. The minimum customer data are: email (Id), name, address (s) and telephone (you are free to add more if you consider it important).
+    2. The minimum data for a dish are: dish id, name, description, price, type of cuisine (Mexican, Italian or Japanese) and status (Available, Not available).
+    3. The minimum data for an order are: order id, customer, order date and time, customer address, total amount, and detail (list) of dishes considering the quantity, unit price, and subtotal for each dish.
+2. Develop an application with the framework of your choice to implement the REST services listed below.
+    1. Services to create and update.
+    2. Service to request an order, considering the following validations:
+        1. Must contain at least 2 saucers.
+        2. The service hours for the app are from 4:00 p.m. to 9:00 p.m.
+    3. Service to consult the number of dishes sold by type of cuisine that are within a range of dates passed as parameters.
 
 ## Commands
 
@@ -111,12 +127,6 @@ Some concept names has been changed.
 
 - Use authentication to list users addresses.
 - The column client_id in Order table can be removed due to normalization.
-
-
-## Considerations
-
-- The requirement "Puede contener al menos 2 platillos" was considered as
-  "Debe contener al menos 2 platillos".
 
 ## Bibliography
 
